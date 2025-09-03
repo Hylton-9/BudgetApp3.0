@@ -1,0 +1,8 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Redirecting...</title>
+<script>
+  const base = '/BudgetApp3.0/';
+  const redirect = base + (location.pathname.replace(base, '') || '');
+  location.replace(redirect);
+</script>
