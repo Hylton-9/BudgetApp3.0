@@ -1,12 +1,71 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Budget Tracker Pro</title>
-  </head>
-  <body class="min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Budget Tracker Pro</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <button type="button" class="tab" data-tab="add">Add</button>
+      <button type="button" class="tab" data-tab="list">Transactions</button>
+      <button type="button" class="tab" data-tab="reports">Reports</button>
+      <button type="button" class="tab" data-tab="importexport">Import/Export</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Add -->
+    <section class="tab-panel" id="tab-add">
+      <form id="tx-form">
+        <label>Date <input name="date" type="date" required /></label>
+        <label>Type
+          <select name="type">
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </label>
+        <label>Amount <input name="amount" type="number" step="0.01" required /></label>
+        <label>Currency <input name="currency" value="JMD" /></label>
+        <label>Category <input name="category" value="uncategorized" /></label>
+        <label>Notes <input name="notes" /></label>
+        <button type="submit">Save</button>
+      </form>
+      <div>
+        <strong>Total Income:</strong> <span id="total-income">—</span> ·
+        <strong>Total Expense:</strong> <span id="total-expense">—</span> ·
+        <strong>Net:</strong> <span id="total-net">—</span>
+      </div>
+    </section>
+
+    <!-- List -->
+    <section class="tab-panel" id="tab-list" hidden>
+      <div>
+        <input id="filter-q" placeholder="Search notes…" />
+        <select id="filter-type">
+          <option value="all">All</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <input id="filter-cat" placeholder="Category (exact id)" />
+      </div>
+      <ul id="tx-list"></ul>
+    </section>
+
+    <!-- Reports (placeholder for now) -->
+    <section class="tab-panel" id="tab-reports" hidden>
+      <p>Charts coming soon.</p>
+    </section>
+
+    <!-- Import / Export -->
+    <section class="tab-panel" id="tab-importexport" hidden>
+      <button id="export-btn" type="button">Export CSV</button>
+      <input id="import-btn" type="file" accept=".csv" />
+    </section>
+  </main>
+
+  <!-- Vite will rewrite this path on build -->
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>

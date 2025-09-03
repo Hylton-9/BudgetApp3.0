@@ -1,8 +1,9 @@
-<!doctype html>
-<meta charset="utf-8" />
-<title>Redirecting...</title>
+<!doctype html><meta charset="utf-8">
+<title>Redirecting…</title>
 <script>
-  const base = '/BudgetApp3.0/';
-  const redirect = base + (location.pathname.replace(base, '') || '');
-  location.replace(redirect);
+  const base = '/BudgetApp3.0/'
+  const path = location.pathname.startsWith(base)
+    ? location.pathname.slice(base.length)
+    : location.pathname
+  location.replace(base + path + location.search + location.hash)
 </script>
